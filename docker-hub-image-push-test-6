@@ -1,8 +1,8 @@
 pipeline {
    agent {
-		  label {
-			    label "test-env"			
-				}
+	  label {
+	   label "test-env"			
+	}
     }
     stages {
         stage('Push image to Hub') {
