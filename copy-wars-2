@@ -1,0 +1,41 @@
+pipeline {
+
+	agent {
+				label {
+					
+						label "built-in"
+						customWorkspace "/home/velocity/.ssh"
+				
+				}
+	}
+	
+	environment {
+						
+						devip = "172.31.30.82"
+						testip = "172.31.17.121"
+		
+		}
+	
+	stages {
+	
+				stage ("COPY_DEV_WAR") {
+				
+					steps {
+								sh "sudo scp -i id_rsa TrainBook-1.0.0-SNAPSHOT.war velocity@${devip}:/mnt/wars"
+					}
+				
+				}
+				
+				stage ("COPY_TEST_WAR") {
+				
+					steps {
+								sh "sudo scp -i id_rsa TrainBook-1.0.0-SNAPSHOT.war velocity@${testip}:/mnt/wars"
+					}
+				
+				}
+		
+		
+		
+	}
+
+}
