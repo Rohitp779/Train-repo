@@ -1,1 +1,21 @@
+pipeline {
+   agent {
+		  label {
+			    label "test-env"			
+				}
+    }
+    stages {
+        stage('Push image to Hub') {
+            steps {
+                withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                    script {
+                        sh "sudo docker login -u rohitp779 -p ${dockerhubpwd}"
+                        sh "sudo docker tag tomcat:9 rohitp779/train-repo-tomcat:9" 
+                        sh "sudo docker push rohitp779/train-repo-tomcat:9"
+                    }
+                }
+            }
+        }
+    }
+}
 
