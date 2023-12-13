@@ -1,10 +1,17 @@
-stage('Push image to Hub'){
-            steps{
-                script{
-                   withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                   sh 'docker login -u rohitp779 -p ${dockerhubpwd}'
-                   }
-                   sh 'docker push rohitp779/devops-track'
+pipeline {
+    agent { label 'dev-env' } // Assigning the agent label
+    
+    stages {
+        stage('Push image to Hub') {
+            steps {
+                withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                    script {
+                        sh "docker login -u rohitp779 -p ${dockerhubpwd}"
+                        sh "docker tag tomcat:9 rohitp779/devops-track:latest" // Tag your image appropriately
+                        sh "docker push rohitp779/devops-track:latest" // Push the tagged image
+                    }
                 }
             }
         }
+    }
+}
