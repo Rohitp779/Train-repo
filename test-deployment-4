@@ -20,7 +20,7 @@ pipeline {
 			stage ("CLONE-DOCKERC-FILE"){
 			
 				steps {     
-
+							sh "sudo rm -rf /mnt/project/*"
 							sh "git clone ${composeurl}"
 				}
 			
