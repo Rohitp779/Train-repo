@@ -1,0 +1,53 @@
+pipeline {
+		agent {
+				label {
+							label "built-in"
+							customWorkspace "/mnt/projects"
+				
+				}
+		}
+		
+		environment {
+						
+						url = "https://github.com/Harsh-GitHub-Journey/Train-Ticket-Reservation-System.git"
+		
+		}
+		
+		stages {
+		
+				stage ("ClONE_PROJECT"){
+								
+							steps {
+										sh "rm -rf *"
+										sh "git clone $url"
+							
+							}
+				
+				}
+				
+				stage ("BUILD_PROJECT") {
+							
+								steps {
+											
+											sh "cd Train-Ticket-Reservation-System && mvn clean install"
+								
+								}
+				
+				}
+				
+				stage ("COPY") {
+							
+							steps {
+										sh "sudo rm -rf /home/velocity/.ssh/TrainBook-1.0.0-SNAPSHOT.war"
+										sh "cp -r Train-Ticket-Reservation-System/target/TrainBook-1.0.0-SNAPSHOT.war /home/velocity/.ssh"
+							
+							}
+				
+				
+				}
+		
+		
+		
+		}
+
+}
