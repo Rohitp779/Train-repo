@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'dev-env' } // Assigning the agent label
+    agent { label 'dev-env' } 
     
     stages {
         stage('Push image to Hub') {
@@ -7,8 +7,8 @@ pipeline {
                 withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
                     script {
                         sh "docker login -u rohitp779 -p ${dockerhubpwd}"
-                        sh "docker tag tomcat:9 rohitp779/devops-track:latest" // Tag your image appropriately
-                        sh "docker push rohitp779/devops-track:latest" // Push the tagged image
+                        sh "docker tag tomcat:9 rohitp779/devops-track:latest" 
+                        sh "docker push rohitp779/devops-track:latest"
                     }
                 }
             }
