@@ -38,8 +38,8 @@ pipeline {
 				stage ("COPY") {
 							
 							steps {
-										sh "sudo rm -rf /home/velocity/.ssh/TrainBook-1.0.0-SNAPSHOT.war"
-										sh "cp -r Train-Ticket-Reservation-System/target/TrainBook-1.0.0-SNAPSHOT.war /home/velocity/.ssh"
+										sh "sudo rm -rf /home/rohit/train/TrainBook-1.0.0-SNAPSHOT.war"
+										sh "cp -r Train-Ticket-Reservation-System/target/TrainBook-1.0.0-SNAPSHOT.war /home/rohit/train/"
 							
 							}
 				
