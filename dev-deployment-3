@@ -4,36 +4,19 @@ pipeline {
 					label {
 						
 							label "dev-env"
-							customWorkspace "/mnt/project"
+							customWorkspace "/home/rohit/train"
 						
 					}
 	}
-	
-	environment {
-						
-						composeurl = "https://github.com/Rohitp779/Train-repo.git"
-						composedirname = "Train-repo"
-		}
-	
-	stages {
-		
-			stage ("CLONE-DOCKERC-FILE"){
-			
-				steps {     
-							sh "sudo rm -rf /mnt/project/*"
-							sh "git clone ${composeurl}"
-				}
-			
-			}
-			
-			stage ("RUN_COMPOSE"){
+				stages{
+				stage("RUN_COMPOSE"){
 			
 				steps {
 				
-							sh "cd ${composedirname} && sudo docker-compose up -d"
+					        
+							sh "docker-compose up -d"
 				}
 			
 			}
-	
-	}
+		}
 }
